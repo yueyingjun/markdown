@@ -34,13 +34,13 @@
 
 
 
-#边框模型
+## 边框模型
 
-## 圆角
+### 圆角
 *  border-raduis: 圆角的半径(%|px|em|rem|vm)
 *  参数的顺序依次是:左上  右上  右下  左下  (顺时针的)
 
-## 阴影
+### 阴影
 
 * box-shadow:x y blur color [inset],[x y blur color  inset]
 
@@ -50,7 +50,7 @@
 *  color 阴影的颜色
 * [inset]  内阴影
 
-## 图片边框
+### 图片边框
 * border-image-source:url()  图片的路径
 * border-image-width     图片边框的宽度
 * border-image-slice     在原图裁切的比例
