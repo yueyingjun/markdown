@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .bigbox{
+            width:800px;height:400px;
+            margin:auto;
+            position: fixed;
+            left:0;top:0;right:0;bottom: 0;
+            border:1px solid red;
+        }
+    </style>
+
+    <script>
+        window.onload=function () {
+
+            var bigbox=document.querySelector(".bigbox");
+            var num=10;
+
+            var widths=800;
+            var heights=400;
+            var arr=[];
+
+            for(var i=0;i<num;i++){
+                // 创建场景
+                var scene=document.createElement("div");
+                scene.style.cssText="width:"+widths+"px;height:"+heights/num+"px;perspective:4800px;";
+
+                //创建box
+
+                var box=document.createElement("div");
+                box.style.cssText="width:100%;height:100%;transform-style:preserve-3d;position:relative;transition:transform 2s linear "+0.2*i+"s;transform-origin:center center "+widths/2+"px";
+
+//创建6个面
+
+                for(var j=0;j<6;j++){
+
+                    var panel=document.createElement("div");
+                    panel.style.cssText="position:absolute;left:0;top:0;";
+
+                    if(j==0){
+//上面的面 800*800
+                        panel.style.width=widths+"px";
+                        panel.style.height=widths+"px"
+                        panel.style.transformOrigin="top";
+                        panel.style.transform="rotateX(90deg)";
+                        panel.style.background="#000";
+                    }else if(j==1){
+//左边的面
+                        panel.style.width="100%";
+                        panel.style.height="100%";
+                        panel.style.transformOrigin="left";
+                        panel.style.transform="rotateY(-90deg)";
+                        panel.style.background="url(imgs/1.jpg) no-repeat";
+                        panel.style.backgroundPositionX=0;
+                        panel.style.backgroundPositionY=-(heights/num)*i+"px";
+
+                    }else if(j==2){
+//下面的面
+                        panel.style.width="100%";
+                        panel.style.height="100%";
+
+                        panel.style.background="url(imgs/2.jpg) no-repeat";
+                        panel.style.backgroundPositionX=0;
+                        panel.style.backgroundPositionY=-(heights/num)*i+"px";
+                    }else if(j==3){
+//右边的面
+
+                        panel.style.width="100%";
+                        panel.style.height="100%";
+                        panel.style.transformOrigin="right";
+                        panel.style.transform="rotateY(90deg)";
+                        panel.style.background="url(imgs/3.jpg) no-repeat";
+                        panel.style.backgroundPositionX=0;
+                        panel.style.backgroundPositionY=-(heights/num)*i+"px";;
+
+                    }else if(j==4){
+//下边的面
+                        panel.style.width=widths+"px";
+                        panel.style.height=widths+"px"
+                        panel.style.transformOrigin="bottom";
+                        panel.style.bottom=0
+                        panel.style.transform="rotateX(-90deg)";
+                        panel.style.background="#000";
+                    }else if(j==5){
+//上面的面
+                        panel.style.width="100%";
+                        panel.style.height="100%";
+                        panel.style.background="url(imgs/4.jpg) no-repeat";
+                        panel.style.transform="translateZ("+widths+"px)";
+                        panel.style.backgroundPositionX=0;
+                        panel.style.backgroundPositionY=-(heights/num)*i+"px";
+
+                    }
+
+                    box.appendChild(panel)
+                }
+
+
+
+
+
+                scene.appendChild(box);
+
+                bigbox.appendChild(scene);
+                arr.push(box);
+
+            }
+
+
+            var inita=0;
+            var speeda=90;
+            setInterval(function(){
+                inita+=speeda;
+
+                for(var i=0;i<arr.length;i++){
+                    arr[i].style.transform="rotateY("+inita+"deg)";
+                }
+
+
+            },5000)
+
+        }
+    </script>
+
+</head>
+<body>
+<div class="bigbox">
+
+</div>
+</body>
+</html>
